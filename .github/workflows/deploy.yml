@@ -42,18 +42,8 @@ jobs:
         with:
           path: './dist'
 
-  configure-pages:
-    needs: build
-    permissions:
-      contents: read
-      pages: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check Pages configuration
-        uses: actions/configure-pages@v4
-
   deploy:
-    needs: [build, configure-pages]
+    needs: build
     permissions:
       contents: read
       pages: write
