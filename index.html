@@ -5,12 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0e1117" />
     <meta name="color-scheme" content="dark" />
-    <meta name="description" content="In-browser C++ code editor powered by Clang 22 and WebAssembly. Fast, private, and works offline." />
+    <meta name="description" content="Write, compile, and run C++20 online with a free browser-based C++ editor. Powered by Clang and WebAssembly; your code stays on your device and works offline after setup." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://kj71.github.io/browser-cpp-editor/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Browser C++ Editor" />
+    <meta property="og:title" content="Free Online C++ Compiler and Editor | Browser C++ Editor" />
+    <meta property="og:description" content="Write, compile, and run C++20 in your browser. Private by design, with offline support after the compiler downloads." />
+    <meta property="og:url" content="https://kj71.github.io/browser-cpp-editor/" />
+    <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23388bfd'/><text x='50' y='68' font-family='monospace' font-weight='bold' font-size='50' fill='white' text-anchor='middle'>C++</text></svg>" />
-    <title>C++ Code Editor</title>
+    <title>Free Online C++ Compiler &amp; Editor | Browser C++ Editor</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Browser C++ Editor",
+        "url": "https://kj71.github.io/browser-cpp-editor/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any device with a modern web browser",
+        "description": "A free, browser-based C++20 editor, compiler, and runner powered by Clang and WebAssembly. Code runs locally and the app supports offline use after setup.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Online C++20 compiler",
+          "Monaco code editor with autocomplete and diagnostics",
+          "Local WebAssembly compilation and execution",
+          "Offline use after initial compiler download"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Free online C++ compiler and code editor</h1>
+        <p>Write, compile, and run C++20 programs in your browser with Clang and WebAssembly. Your code stays on your device, and the editor works offline after the compiler downloads.</p>
+        <p><a href="./about/">Learn about the browser C++ editor</a></p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

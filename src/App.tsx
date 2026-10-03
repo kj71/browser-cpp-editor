@@ -191,6 +191,9 @@ export const App: React.FC = () => {
 
         {/* Right shortcuts / status */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '11px', color: 'var(--text-muted)' }}>
+          <a href="./about/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
+            About
+          </a>
           <span title="Keyboard shortcut: Cmd/Ctrl+Enter">
             <kbd style={{ backgroundColor: 'var(--bg-surface-elevated)', padding: '2px 5px', borderRadius: '3px', border: '1px solid var(--border-color)', fontFamily: 'var(--font-mono)' }}>
               Ctrl+Enter

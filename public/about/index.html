@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how the free Browser C++ Editor compiles and runs C++20 in your browser, keeps source code on your device, and works offline after setup.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://kj71.github.io/browser-cpp-editor/about/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Browser C++ Editor">
+    <meta property="og:title" content="About the Free Browser C++ Editor">
+    <meta property="og:description" content="A private, offline-ready way to edit, compile, and run C++20 in a modern browser.">
+    <meta property="og:url" content="https://kj71.github.io/browser-cpp-editor/about/">
+    <title>About the Free Browser C++ Editor | Online C++20 Compiler</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0e1117; color: #e6edf3; }
+      * { box-sizing: border-box; }
+      body { margin: 0; line-height: 1.7; }
+      header, main, footer { width: min(880px, calc(100% - 40px)); margin-inline: auto; }
+      header { padding: 24px 0; border-bottom: 1px solid #30363d; }
+      header a { color: #e6edf3; text-decoration: none; font-weight: 700; }
+      main { padding: 54px 0 72px; }
+      h1, h2 { line-height: 1.2; letter-spacing: -.025em; }
+      h1 { max-width: 720px; font-size: clamp(2.2rem, 7vw, 4rem); margin: 0 0 20px; }
+      h2 { margin-top: 42px; font-size: 1.5rem; }
+      p, li { color: #b7c0cb; }
+      .lead { font-size: 1.2rem; max-width: 700px; }
+      .button { display: inline-block; margin: 16px 0 12px; padding: 10px 16px; border-radius: 8px; background: #388bfd; color: white; font-weight: 700; text-decoration: none; }
+      a { color: #79c0ff; }
+      code { color: #d2a8ff; }
+      footer { padding: 24px 0; border-top: 1px solid #30363d; font-size: .9rem; }
+    </style>
+  </head>
+  <body>
+    <header><a href="../">Browser C++ Editor</a></header>
+    <main>
+      <h1>A free online C++ compiler that runs in your browser</h1>
+      <p class="lead">Browser C++ Editor is a C++20 coding workspace for writing, compiling, and running small programs without installing a desktop toolchain. It combines the Monaco editor with Clang compiled to WebAssembly.</p>
+      <a class="button" href="../">Open the C++ editor</a>
+
+      <h2>Compile and run C++20 online</h2>
+      <p>Write code in the editor, press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>⌘</kbd> + <kbd>Enter</kbd> on macOS), and read compiler diagnostics and program output in the same workspace. Standard input is supported for programs that read from <code>stdin</code>. The compiler targets WebAssembly and runs locally in your browser.</p>
+
+      <h2>Private by design</h2>
+      <p>Your source code and standard input are compiled and run on your device. They are not uploaded to a compilation server. The editor saves your workspace in your browser's local storage, so saved tabs are tied to the browser profile you use.</p>
+
+      <h2>Use the C++ editor offline</h2>
+      <p>Open the site once while online and allow the app shell and compressed compiler to finish downloading. After setup, the cached editor and compiler can be used offline. Clearing browser site data removes those downloads, so the next setup needs an internet connection.</p>
+
+      <h2>What C++ features are supported?</h2>
+      <p>The editor uses Clang 22 with C++20 mode and the WebAssembly System Interface (WASI). It includes Monaco autocomplete and diagnostics, multiple persistent editor tabs, program input, and output. Clang uses libc++; a small compatibility layer provides <code>&lt;bits/stdc++.h&gt;</code> and common GNU PBDS ordered-set operations. It does not include every GNU libstdc++ header or PBDS feature.</p>
+
+      <h2>Frequently asked questions</h2>
+      <h3>Is this online C++ compiler free?</h3>
+      <p>Yes. The editor is free to use and runs as a static website. No account is required to write and run programs.</p>
+      <h3>Do I need to install a compiler?</h3>
+      <p>No desktop compiler installation is needed. The site downloads its WebAssembly compiler the first time you use it; your browser stores the compiler for later visits.</p>
+      <h3>Can I compile code with GNU-only headers?</h3>
+      <p>Some common contest headers and PBDS ordered-set operations are supported through compatibility headers. Code that depends on other GNU libstdc++ extensions may need to be adapted for Clang and libc++.</p>
+
+      <p>View the <a href="https://github.com/kj71/browser-cpp-editor">source code and setup instructions on GitHub</a>.</p>
+    </main>
+    <footer><a href="../">Open Browser C++ Editor</a> · Free C++20 editor and compiler for the browser</footer>
+  </body>
+</html>

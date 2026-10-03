@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kj71.github.io/browser-cpp-editor/sitemap.xml
