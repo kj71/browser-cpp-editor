@@ -8,9 +8,8 @@ const compilerHeaderPaths = [
   'extras/ext/pb_ds/tree_policy.hpp'
 ];
 
-async function loadCompilerHeaders(): Promise<Record<string, string>> {
-  const basePath = import.meta.env.BASE_URL;
-  const latestUrl = new URL(`${basePath}toolchain/latest.json`, self.location.href);
+async function loadCompilerHeaders(baseUrl: string): Promise<Record<string, string>> {
+  const latestUrl = new URL('toolchain/latest.json', baseUrl);
   const latestResponse = await fetch(latestUrl);
   if (!latestResponse.ok) {
     throw new Error(`Failed to locate the cached compiler headers (${latestResponse.status})`);
@@ -22,7 +21,7 @@ async function loadCompilerHeaders(): Promise<Record<string, string>> {
   const cache = await caches.open(`cpp-toolchain-v${latest.version}`);
   const headers: Record<string, string> = {};
   for (const headerPath of compilerHeaderPaths) {
-    const url = new URL(`${basePath}toolchain/${latest.version}/${headerPath}`, self.location.href);
+    const url = new URL(`toolchain/${latest.version}/${headerPath}`, baseUrl);
     const response = await cache.match(url.href);
     if (!response) throw new Error(`Compiler header is not installed: ${headerPath}`);
 
@@ -49,6 +48,7 @@ export interface CompileRequest {
   type: 'compile';
   id: string;
   source: string;
+  toolchainBaseUrl: string;
 }
 
 export interface CompileResponse {
@@ -62,7 +62,7 @@ export interface CompileResponse {
 }
 
 self.onmessage = async (event: MessageEvent<CompileRequest>) => {
-  const { type, id, source } = event.data;
+  const { type, id, source, toolchainBaseUrl } = event.data;
   if (type !== 'compile') return;
 
   let capturedStderr = '';
@@ -70,7 +70,7 @@ self.onmessage = async (event: MessageEvent<CompileRequest>) => {
 
   try {
     const decoder = new TextDecoder();
-    const virtualHeaders = toVirtualFileTree(await loadCompilerHeaders());
+    const virtualHeaders = toVirtualFileTree(await loadCompilerHeaders(toolchainBaseUrl));
 
     const files = await commands['clang++'](
       [

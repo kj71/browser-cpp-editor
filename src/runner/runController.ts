@@ -107,7 +107,11 @@ export class RunController {
           compiler.postMessage({
             type: 'compile',
             id: String(runId),
-            source
+            source,
+            // Resolve the site root on the main thread: in a production build
+            // the worker itself lives under /assets/, so './' would point at
+            // /assets/toolchain instead of the cached /toolchain files.
+            toolchainBaseUrl: new URL(import.meta.env.BASE_URL, window.location.href).href
           });
         });
 
