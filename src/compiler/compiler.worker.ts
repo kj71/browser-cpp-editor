@@ -1,6 +1,21 @@
 import './installToolchainFetch';
 import { parseDiagnostics, DiagnosticItem } from './diagnostics';
-import { commands } from '@yowasp/clang';
+
+// Keep the compiler package out of the worker's module startup path. YoWASP
+// initializes its WASM modules at import time; loading it from the message
+// handler lets startup failures be returned to the UI as compile errors rather
+// than surfacing as an opaque Worker error event.
+let commandsPromise: Promise<typeof import('@yowasp/clang').commands> | null = null;
+
+async function loadCompilerCommands(): Promise<typeof import('@yowasp/clang').commands> {
+  commandsPromise ??= import('@yowasp/clang')
+    .then(module => module.commands)
+    .catch(error => {
+      commandsPromise = null;
+      throw error;
+    });
+  return commandsPromise;
+}
 
 const compilerHeaderPaths = [
   'extras/bits/stdc++.h',
@@ -71,6 +86,7 @@ self.onmessage = async (event: MessageEvent<CompileRequest>) => {
   try {
     const decoder = new TextDecoder();
     const virtualHeaders = toVirtualFileTree(await loadCompilerHeaders(toolchainBaseUrl));
+    const commands = await loadCompilerCommands();
 
     const files = await commands['clang++'](
       [

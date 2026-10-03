@@ -94,8 +94,14 @@ export class RunController {
             cleanup();
             const detail = event.error instanceof Error
               ? `${event.error.name}: ${event.error.message}`
-              : event.message;
-            reject(new Error(detail || `Compiler worker failed to load (${event.filename}:${event.lineno}:${event.colno})`));
+              : event.message || (
+                event.filename
+                  ? `Worker script error at ${event.filename}:${event.lineno}:${event.colno}`
+                  : 'The compiler worker could not start. Reload the page and try again.'
+              );
+            compiler.terminate();
+            if (this.compilerWorker === compiler) this.compilerWorker = null;
+            reject(new Error(detail));
           };
           const onMessageError = () => {
             cleanup();
