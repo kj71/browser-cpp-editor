@@ -17,7 +17,10 @@ export default defineConfig({
       workbox: {
         maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15 MiB for bundled Monaco
         globIgnores: ['**/toolchain/**', '**/*.wasm', '**/*.wasm.gz', '**/*.tar.gz'],
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,xml,txt}'],
+        // These are real static documents for crawlers. Do not let the SPA
+        // navigation fallback replace them with index.html when opened directly.
+        navigateFallbackDenylist: [/\/(?:robots\.txt|sitemap\.xml)$/]
       },
       manifest: {
         name: 'C++ Code Editor',
